@@ -50,6 +50,7 @@ import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
@@ -212,3 +213,21 @@ app.add_middleware(
 # ============================================================
 app.include_router(health.router)  # GET /health
 app.include_router(chat.router)    # POST /chat
+
+@app.get("/")
+def read_root():
+    """Root endpoint for browser visitors."""
+    return {
+        "message": "Welcome to the SHL Assessment Chatbot API! 🚀",
+        "endpoints": {
+            "health": "/health",
+            "chat": "/chat",
+            "docs": "/docs"
+        },
+        "status": "online"
+    }
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    """Ignore favicon requests to prevent 404s in logs."""
+    return {}
