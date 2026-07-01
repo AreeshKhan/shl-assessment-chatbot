@@ -160,10 +160,12 @@ class Agent:
             return response
             
         except Exception as e:
-            logger.error(f"Agent error: {e}", exc_info=True)
+            import traceback
+            err_trace = traceback.format_exc()
+            logger.error(f"Agent error: {e}\n{err_trace}", exc_info=True)
             # Return a safe fallback — never crash the API
             return {
-                "reply": "I apologize, but I encountered an error processing your request. Could you please try rephrasing your question?",
+                "reply": f"ERROR FOR DEBUG: {str(e)} | Trace: {err_trace}",
                 "recommendations": [],
                 "end_of_conversation": False,
             }
