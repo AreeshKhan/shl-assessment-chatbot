@@ -141,12 +141,11 @@ class Agent:
             logger.info(f"Search query: {search_query[:100]}...")
             
             # ---- Step 2: Retrieve candidates from FAISS ----
-            query_embedding = self.embeddings.embed_query(search_query)
             candidates = self.embeddings.search(
-                query_embedding, 
+                search_query, 
                 top_k=settings.RETRIEVAL_TOP_K
             )
-            logger.info(f"Retrieved {len(candidates)} candidates from FAISS")
+            logger.info(f"Retrieved {len(candidates)} candidates")
             
             # ---- Step 3: Build the prompt ----
             user_prompt = self._build_prompt(messages, candidates)
