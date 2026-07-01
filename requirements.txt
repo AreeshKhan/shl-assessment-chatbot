@@ -10,6 +10,7 @@ groq>=0.9.0
 
 # Embeddings (local, no API needed - PRECOMPUTED)
 # sentence-transformers removed to save memory on Render (512MB limit)
+numpy>=1.24.0
 
 # Vector Store
 faiss-cpu>=1.7.4
