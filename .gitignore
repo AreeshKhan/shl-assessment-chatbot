@@ -1,0 +1,59 @@
+# ============================================================
+# .gitignore for SHL Assessment Chatbot
+# ============================================================
+# PURPOSE: Tell Git which files to NEVER track/commit.
+# WHY: API keys, virtual environments, and cache files should
+#      never be in version control (security + cleanliness).
+# ============================================================
+
+# --- Environment Variables ---
+# CRITICAL: .env contains your GEMINI_API_KEY
+# If this file gets committed, anyone can use your API key!
+.env
+
+# --- Python Virtual Environment ---
+# The venv folder is ~50MB of installed packages.
+# Every developer creates their own from requirements.txt.
+venv/
+env/
+.venv/
+
+# --- Python Cache ---
+# Python creates these automatically when importing modules.
+# They speed up imports but are machine-specific.
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# --- FAISS Index ---
+# The FAISS index is rebuilt at startup from the catalog.
+# No need to track it in Git.
+*.faiss
+*.pkl
+faiss_index/
+
+# --- IDE Settings ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS Files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Distribution/Build ---
+dist/
+build/
+*.egg-info/
+
+# --- Test/Coverage ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Misc ---
+*.log
+pdf_extracted.txt
