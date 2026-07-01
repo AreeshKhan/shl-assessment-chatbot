@@ -113,7 +113,7 @@ class EmbeddingService:
             query_terms = set(query.lower().split())
             scored = []
             for a in self._assessments:
-                text = (a.name + " " + a.description + " " + " ".join(a.skills)).lower()
+                text = (a.name + " " + a.description + " " + " ".join(a.keys)).lower()
                 score = sum(1 for term in query_terms if term in text)
                 scored.append((score, a))
             
